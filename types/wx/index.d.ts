@@ -16,7 +16,9 @@ declare namespace wx {
      */
     type ApiName =
         | 'updateAppMessageShareData'
+        | 'onMenuShareAppMessage'
         | 'updateTimelineShareData'
+        | 'onMenuShareTimeline'
         | 'onMenuShareWeibo'
         | 'chooseImage'
         | 'previewImage'
@@ -209,6 +211,19 @@ declare namespace wx {
     ): void;
 
     /**
+     * onMenuShareAppMessage parameters
+     */
+    type OnMenuShareAppMessageParams = UpdateAppMessageShareDataParams & {
+        type?: 'link' | 'music' | 'video';
+        dataUrl?: string;
+    } & Params;
+
+    /**
+     * 获取“分享给朋友”按钮点击状态及自定义分享内容接口（即将废弃）
+     */
+    function onMenuShareAppMessage(params: OnMenuShareAppMessageParams): void;
+
+    /**
      * updateTimelineShareData parameters
      */
     type UpdateTimelineShareDataParams = ShareData & Params;
@@ -220,6 +235,17 @@ declare namespace wx {
     function updateTimelineShareData(
         params: UpdateTimelineShareDataParams
     ): void;
+
+    /**
+     * onMenuShareTimeline parameters
+     */
+    type OnMenuShareTimelineParams = UpdateTimelineShareDataParams;
+
+    /**
+     * 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口（即将废弃）
+     * @param params Parameters
+     */
+    function onMenuShareTimeline(params: OnMenuShareTimelineParams): void;
 
     /**
      * onMenuShareWeibo parameters
