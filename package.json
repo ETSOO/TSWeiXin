@@ -1,6 +1,6 @@
 {
     "name": "@etsoo/weixin",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "TypeScript WeChat JSSDK type definition and function extension / 微信JSSDK类型定义和功能扩展",
     "main": "lib/cjs/index.js",
     "module": "lib/mjs/index.js",

@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.getElementById('check-api')!.innerHTML = JSON.stringify(
         (
-            await wxe.promise(wx.checkJsApi, {
+            await wxe.checkJsApiAsync({
                 jsApiList: ['getNetworkType', 'updateAppMessageShareData']
             })
         ).checkResult

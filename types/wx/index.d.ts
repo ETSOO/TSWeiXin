@@ -168,11 +168,12 @@ declare namespace wx {
 
     /**
      * checkJsApi parameters
+     * 如果权限项目没有在config中指定，会为空
      */
     type CheckJsApiParams<T extends ApiName = ApiName> = {
         jsApiList: T[];
     } & Params<{
-        checkResult: { [P in T]: boolean };
+        checkResult: { [P in T]?: boolean };
     }>;
 
     /**
