@@ -23,7 +23,47 @@ document.addEventListener('DOMContentLoaded', async () => {
     const stateE = document.getElementById('state')!;
     stateE.innerHTML = 'Loading...';
 
+    /*
+    try {
+        wx.config({
+            debug: true,
+            appId,
+            nonceStr: 'UnW7MTdpP8IM6WTW',
+            timestamp: '1652860914719',
+            signature: '3002f148882e27927e322d8411a13ca5f59c1d6c',
+            jsApiList: [
+                'getNetworkType',
+                'updateAppMessageShareData',
+                'updateTimelineShareData',
+                'chooseImage',
+                'previewImage',
+                'uploadImage',
+                'downloadImage',
+                'startRecord',
+                'stopRecord',
+                'onVoiceRecordEnd',
+                'playVoice',
+                'pauseVoice',
+                'stopVoice',
+                'uploadVoice',
+                'downloadVoice',
+                'translateVoice',
+                'scanQRCode'
+            ]
+        });
+        wx.error((res) => {
+            alert('error' + res);
+        });
+        wx.ready(() => {
+            alert('ready');
+        });
+    } catch (e) {
+        alert('e');
+    }
+    */
+
     const result = await wxe.configAsync({
+        debug: false,
         appId,
         nonceStr: 'UnW7MTdpP8IM6WTW',
         timestamp: '1652860914719',
@@ -67,18 +107,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         await wxe.promise(wx.getNetworkType, {})
     ).networkType;
 
-    await wxe.promise(wx.updateAppMessageShareData, {
+    const shareData: wx.UpdateTimelineShareDataParams = {
         title: '测试分享',
-        desc: '来自亿速思维，测试分享信息，请关注我们',
         link: 'https://ask.studyleader.com',
         imgUrl: 'https://ask.studyleader.com/img/logo.png'
-    });
+    };
+    const shareMData: wx.UpdateAppMessageShareDataParams = {
+        ...shareData,
+        desc: '来自亿速思维，测试分享信息，请关注我们'
+    };
 
-    await wxe.promise(wx.updateTimelineShareData, {
-        title: '测试分享',
-        link: 'https://ask.studyleader.com',
-        imgUrl: 'https://ask.studyleader.com/img/logo.png'
-    });
+    wx.updateAppMessageShareData(shareMData);
+    wx.onMenuShareAppMessage(shareMData);
+
+    wx.updateTimelineShareData(shareData);
+    wx.onMenuShareTimeline(shareData);
 
     document
         .getElementById('choose-image')

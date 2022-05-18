@@ -36,15 +36,20 @@ export namespace wxe {
      */
     export function configAsync(params: wx.ConfigParams) {
         return new Promise<wx.ErrorData | null>((resolve) => {
+            // 是否为微信客户端
+            if (!navigator.userAgent.match('MicroMessenger')?.length) {
+                resolve({ errMsg: 'No MicroMessenger' });
+                return;
+            }
+
+            wx.config({
+                ...params
+            });
             wx.ready(() => {
                 resolve(null);
             });
             wx.error((res) => {
                 resolve(res);
-                //reject(res);
-            });
-            wx.config({
-                ...params
             });
         });
     }
@@ -58,10 +63,12 @@ export namespace wxe {
         params: Omit<wx.CheckJsApiParams<T>, 'success' | 'fail'>
     ) {
         type P = Required<wx.CheckJsApiParams<T>>;
-        return new Promise<Parameters<P['success']>[0]>((resolve, reject) => {
+        return new Promise<Parameters<P['success']>[0]>((resolve) => {
             wx.checkJsApi({
                 ...params,
-                fail: reject,
+                fail(res) {
+                    resolve({ ...res, checkResult: {} });
+                },
                 success(res) {
                     resolve(res);
                 }
