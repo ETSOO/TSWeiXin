@@ -145,7 +145,7 @@ declare namespace wx {
      */
     type ConfigParams = ConfigBase & {
         debug?: boolean;
-        jsApiList: ReadonlyArray<ApiName>;
+        jsApiList: ApiName[];
     };
 
     /**
@@ -167,6 +167,11 @@ declare namespace wx {
     function error(fn: (res: ErrorData) => void): void;
 
     /**
+     * CheckJsApi result type
+     */
+    type CheckJsApiResult = boolean | 'no';
+
+    /**
      * checkJsApi parameters
      * 如果权限项目没有在config中指定，会为空
      * 在PC微信浏览器上发现'no'的值
@@ -174,7 +179,7 @@ declare namespace wx {
     type CheckJsApiParams<T extends ApiName[]> = {
         jsApiList: T;
     } & Params<{
-        checkResult: { [P in T[number]]?: boolean | 'no' };
+        checkResult: { [P in T[number]]?: CheckJsApiResult };
     }>;
 
     /**

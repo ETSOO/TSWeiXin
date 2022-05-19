@@ -8,6 +8,7 @@ import { CountdownTask } from '@etsoo/task';
  */
 export namespace wxe {
     /**
+     * Make async call
      * 异步调用
      * @param fn 异步调用的wx方法
      * @param params 参数
@@ -78,6 +79,7 @@ export namespace wxe {
 
     /**
      * Record voice
+     * 录音
      * @returns data and stop methods
      */
     export function recordVoice() {
@@ -108,5 +110,39 @@ export namespace wxe {
                 });
             }
         };
+    }
+
+    /**
+     * Setup wechat share, the link should be opened inside the public account
+     * 设置微信分享，链接必须在公众号聊天界面打开（2022/5/19还需要）
+     * @param data Shared data
+     * @param p checkJsApi result
+     * @param debug Show error message
+     */
+    export function setupShare(
+        data: wx.UpdateAppMessageShareDataParams,
+        p: { [K in wx.ApiName]?: wx.CheckJsApiResult },
+        debug?: boolean
+    ) {
+        try {
+            if (p.updateAppMessageShareData === true)
+                wx.updateAppMessageShareData(data);
+
+            if (p.updateTimelineShareData === true)
+                wx.updateTimelineShareData(data);
+        } catch (e) {
+            if (debug) alert('New: ' + e);
+            else console.log('New', e);
+        }
+
+        try {
+            if (p.onMenuShareAppMessage === true)
+                wx.onMenuShareAppMessage(data);
+
+            if (p.onMenuShareTimeline === true) wx.onMenuShareTimeline(data);
+        } catch (e) {
+            if (debug) alert('Old: ' + e);
+            else console.log('Old', e);
+        }
     }
 }

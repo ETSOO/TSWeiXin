@@ -27,3 +27,4 @@ $ yarn add @etsoo/weixin
 |checkJsApiAsync|Async check Api / 异步检查接口|
 |recordVoice|Record voice / 录音，支持开始和结束一步操作|
 |promise|Makes async call / 创建异步调用|
+|setupShare|Setup wechat share / 设置微信分享，链接必须在公众号聊天窗口打开|
