@@ -124,12 +124,15 @@ export namespace wxe {
         p: { [K in wx.ApiName]?: wx.CheckJsApiResult },
         debug?: boolean
     ) {
+        // 朋友圈版本数据
+        const { desc, ...data1 } = data;
+
         try {
             if (p.updateAppMessageShareData === true)
                 wx.updateAppMessageShareData(data);
 
             if (p.updateTimelineShareData === true)
-                wx.updateTimelineShareData(data);
+                wx.updateTimelineShareData(data1);
         } catch (e) {
             if (debug) alert('New: ' + e);
             else console.log('New', e);
@@ -139,7 +142,7 @@ export namespace wxe {
             if (p.onMenuShareAppMessage === true)
                 wx.onMenuShareAppMessage(data);
 
-            if (p.onMenuShareTimeline === true) wx.onMenuShareTimeline(data);
+            if (p.onMenuShareTimeline === true) wx.onMenuShareTimeline(data1);
         } catch (e) {
             if (debug) alert('Old: ' + e);
             else console.log('Old', e);
