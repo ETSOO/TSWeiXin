@@ -59,7 +59,7 @@ export namespace wxe {
      * @param params Parameters
      * @returns 判定结果
      */
-    export function checkJsApiAsync<T extends wx.ApiName = wx.ApiName>(
+    export function checkJsApiAsync<T extends wx.ApiName[]>(
         params: Omit<wx.CheckJsApiParams<T>, 'success' | 'fail'>
     ) {
         type P = Required<wx.CheckJsApiParams<T>>;

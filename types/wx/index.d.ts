@@ -145,7 +145,7 @@ declare namespace wx {
      */
     type ConfigParams = ConfigBase & {
         debug?: boolean;
-        jsApiList: ApiName[];
+        jsApiList: ReadonlyArray<ApiName>;
     };
 
     /**
@@ -169,11 +169,12 @@ declare namespace wx {
     /**
      * checkJsApi parameters
      * 如果权限项目没有在config中指定，会为空
+     * 在PC微信浏览器上发现'no'的值
      */
-    type CheckJsApiParams<T extends ApiName = ApiName> = {
-        jsApiList: T[];
+    type CheckJsApiParams<T extends ApiName[]> = {
+        jsApiList: T;
     } & Params<{
-        checkResult: { [P in T]?: boolean };
+        checkResult: { [P in T[number]]?: boolean | 'no' };
     }>;
 
     /**
@@ -181,9 +182,7 @@ declare namespace wx {
      * 需要首先在config的 jsApiList 指定，否则为空
      * @param params Parameters
      */
-    function checkJsApi<T extends ApiName = ApiName>(
-        params: CheckJsApiParams<T>
-    ): void;
+    function checkJsApi<T extends ApiName[]>(params: CheckJsApiParams<T>): void;
 
     /**
      * Share data base

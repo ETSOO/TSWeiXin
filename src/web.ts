@@ -15,6 +15,7 @@ import { wxe } from '.';
 // 配置 JS接口安全域名 为 da44-202-180-93-189.au.ngrok.io，重启 ngrok 后需要重新设置
 // 下载 微信开发者工具，登陆后进行公众号调试，域名使用上面的公网地址即可
 // 在线签名地址：https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign
+// 链接必须在公众号聊天界面发出，打开然后分享才行，否则只是一个网址，Stupid，非常无语的设计 https://developers.weixin.qq.com/community/develop/doc/0006a2e2418ef0a371893e19d50809
 
 document.addEventListener('DOMContentLoaded', async () => {
     const appId = 'wxff9d39c6461328dd';
