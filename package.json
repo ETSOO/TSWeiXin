@@ -1,6 +1,6 @@
 {
     "name": "@etsoo/weixin",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "TypeScript WeChat JSSDK type definition and function extension / 微信JSSDK类型定义和功能扩展",
     "main": "lib/cjs/index.js",
     "module": "lib/mjs/index.js",
@@ -53,12 +53,12 @@
         "@etsoo/task": "^1.0.1"
     },
     "devDependencies": {
-        "@babel/core": "^7.17.10",
-        "@babel/plugin-proposal-class-properties": "^7.16.7",
-        "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
-        "@babel/plugin-transform-runtime": "^7.17.10",
-        "@babel/preset-env": "^7.17.10",
-        "@babel/preset-typescript": "^7.16.7",
+        "@babel/core": "^7.18.0",
+        "@babel/plugin-proposal-class-properties": "^7.17.12",
+        "@babel/plugin-proposal-object-rest-spread": "^7.18.0",
+        "@babel/plugin-transform-runtime": "^7.18.0",
+        "@babel/preset-env": "^7.18.0",
+        "@babel/preset-typescript": "^7.17.12",
         "babel-loader": "^8.2.5",
         "prettier": "2.6.2",
         "terser-webpack-plugin": "^5.3.1",
