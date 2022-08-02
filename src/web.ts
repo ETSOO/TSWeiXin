@@ -10,6 +10,8 @@ import { wxe } from '.';
 // 开通微信公众号测试账号 https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index
 // 安装配置 ngrok: https://ngrok.com/download
 // ngrok http 9000 --host-header="localhost:9000"，运行服务，9000为当前测试服务器端口，会有一个随机公共域名映射：da44-202-180-93-189.au.ngrok.io -> http://localhost:9000
+// ngrok http https://localhost:9000
+// http://localhost:4040/ to view all logs
 // 访问如果出现 “Invalid Host header”，配置 devServer allowedHosts: 'all' //for ngrok，并重新运行服务
 // 如果希望获得更长的Session，注册 https://ngrok.com/docs#authtoken
 // 配置 JS接口安全域名 为 da44-202-180-93-189.au.ngrok.io，重启 ngrok 后需要重新设置
