@@ -38,7 +38,7 @@ export namespace wxe {
     export function configAsync(params: wx.ConfigParams) {
         return new Promise<wx.ErrorData | null>((resolve) => {
             // 是否为微信客户端
-            if (!navigator.userAgent.match('MicroMessenger')?.length) {
+            if (!navigator.userAgent.match(/MicroMessenger/i)?.length) {
                 resolve({ errMsg: 'No MicroMessenger' });
                 return;
             }
